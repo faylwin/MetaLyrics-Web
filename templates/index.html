@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaLyrics Web</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <h1>MetaLyrics Web</h1>
+        <p class="desc">Sincronización de letras nivel experto</p>
+
+        <div id="coverBox" class="cover-preview" style="display:none;">
+            <img id="coverImg" src="" alt="Album">
+        </div>
+
+        <form id="mainForm" action="/process" method="POST" enctype="multipart/form-data">
+            <div class="field">
+                <label>Archivo Musical</label>
+                <input type="file" name="file" id="fileInp" accept=".mp3,.flac" required>
+            </div>
+
+            <div class="grid-fields">
+                <div class="field">
+                    <label>Artista</label>
+                    <input type="text" name="artist" id="artist" placeholder="Artista">
+                </div>
+                <div class="field">
+                    <label>Título</label>
+                    <input type="text" name="title" id="title" placeholder="Canción">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Álbum</label>
+                <input type="text" name="album" id="album" placeholder="Opcional">
+            </div>
+
+            <div class="field">
+                <label>Letra Personalizada</label>
+                <textarea name="manual_lyrics" id="lyrics" rows="2" placeholder="Pega aquí si ya la tienes..."></textarea>
+            </div>
+
+            <div id="loading" class="loader-wrap" style="display:none;">
+                <div class="prog-bg"><div id="progBar"></div></div>
+                <p id="status">Procesando audio...</p>
+            </div>
+
+            <button type="submit" id="btnGo" class="btn-submit">Sincronizar e Inyectar</button>
+        </form>
+
+        <div class="coffee-zone">
+            <p>¿Te gusta el diseño?</p>
+            <a href="https://www.buymeacoffee.com/phelip3x" target="_blank" class="bmc-btn">
+                <span>☕</span> Invítame un café
+            </a>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
